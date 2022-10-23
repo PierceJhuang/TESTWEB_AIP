@@ -1,0 +1,197 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+
+@{
+    Layout = "";
+
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Security-Policy" content="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="viho admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, viho admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/images/favicon.png" type="image/x-icon">
+    <title>桃園國際機場意外理賠平台</title>
+    <!-- Font Awesome-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/fontawesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/feather-icon.css">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link id="color" rel="stylesheet" href="../assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="../assets/css/responsive.css">
+</head>
+<body>
+    <!-- Loader starts-->
+    <div class="loader-wrapper">
+        <div class="theme-loader">
+            <div class="loader-p"></div>
+        </div>
+    </div>
+    <!-- Loader ends-->
+    <!-- page-wrapper Start-->
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-5"><img class="bg-img-cover bg-center" src="../assets/images/login/3.jpg" alt="looginpage"></div>
+                <div class="col-xl-7 p-0">
+                    <div class="login-card">
+                        <form class="theme-form login-form">
+                            <h4>帳戶登入</h4>
+                            <h6>歡迎光臨桃園國際機場意外理賠平台.</h6>
+                            <div class="form-group">
+                                <label>帳號</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="icon-user"></i></span>
+                                    <input id="txtAccount" class="form-control" type="text" required="" placeholder="您的帳號">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>密碼</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                                    <input id="txtPassword" class="form-control" type="password" name="login[password]" required="" placeholder="*********">
+                                    <div class="show-hide"><span class="show">  </span></div>
+                                </div>
+                            </div>
+                            @*<div class="form-group">
+                                    <div class="checkbox">
+                                        <input type="checkbox" id="chkRemember" name="chkRemember">
+                                        <label class="text-muted" for="chkRemember">記住密碼</label>
+                                    </div>
+                                </div>*@
+                            <div class="form-group">
+                                <a href="javascript:void(0)" class="btn btn-primary btn-block" onclick="CheckAccount()">登入帳號</a>
+                            </div>
+
+                            @Html.AntiForgeryToken()
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- page-wrapper end-->
+    <!-- latest jquery-->
+    <script src="../assets/js/jquery-3.5.1.min.js"></script>
+    <!-- feather icon js-->
+    <script src="../assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="../assets/js/icons/feather-icon/feather-icon.js"></script>
+    <!-- Sidebar jquery-->
+    <!-- Plugins JS start-->
+    <!-- Plugins JS Ends-->
+
+    <script src="../assets/js/config.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../assets/js/bootstrap/popper.min.js"></script>
+    <script src="../assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Theme js-->
+    <script src="../assets/js/script.js"></script>
+    <!-- login js-->
+    <!-- Plugin used-->
+</body>
+</html>
+
+<script>
+    /*----------------------------------------
+passward show hide
+----------------------------------------*/
+    $('.show-hide').show();
+    $('.show-hide span').addClass('show');
+
+    $('.show-hide span').click(function () {
+        if ($(this).hasClass('show')) {
+            $('input[name="login[password]"]').attr('type', 'text');
+            $(this).removeClass('show');
+        } else {
+            $('input[name="login[password]"]').attr('type', 'password');
+            $(this).addClass('show');
+        }
+    });
+    $('form button[type="submit"]').on('click', function () {
+        $('.show-hide span').addClass('show');
+        $('.show-hide').parent().find('input[name="login[password]"]').attr('type', 'password');
+    });
+
+
+
+    @functions{
+        public string TokenHeaderValue()
+        {
+            string cookieToken, formToken;
+            AntiForgery.GetTokens(null, out cookieToken, out formToken);
+            return cookieToken + ":" + formToken;
+        }
+    }
+
+
+    function CheckAccount() {
+
+            var data = {
+                strAccount: $('#txtAccount').val(),
+                strPassword: $('#txtPassword').val(),
+               /* Remember: $('#chkRemember').prop("checked")?'Y':'N',*/
+            };
+
+            $.ajax({
+            type: "Post",
+            url: '@Url.Action("CheckAccount", "Login")',
+            data: data,
+                dataType: "json",
+             headers: {
+            'RequestVerificationToken': '@TokenHeaderValue()'
+        },
+            success: function (data) {
+                if (data.Result == "Success")
+                {
+                    window.location = '@Url.Action("Index", "Home")';
+                }
+                else
+                {
+
+                    alert(data.Message);
+                }
+            }
+        });
+        };
+
+    $(document).ready(function () {
+
+        @*var UserInfo = @Html.Raw(Json.Encode(ViewData["UserInfo"]));
+
+        if (UserInfo != "undefined" && UserInfo != null) {
+
+            $('#txtAccount').val(UserInfo.Account);
+            $('#txtPassword').val(UserInfo.Password);
+
+            if (UserInfo.Remember == "Y") {
+                $('#chkRemember').prop("checked", true);
+            }
+
+        }*@
+    });
+
+</script>

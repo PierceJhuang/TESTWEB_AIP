@@ -1,0 +1,2483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ClaimProgress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AccidentNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ClaimProgressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ClaimProgressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryC4ByInsured">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="c4Insured" type="tns:C4Insured" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="C4Insured">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="identity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryC4ByInsuredResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryC4ByInsuredResult" type="tns:ReturnsOfReturnC4InsuredData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnC4InsuredData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnC4InsuredData" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ExecuteResultEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="Success" />
+          <s:enumeration value="Failure" />
+          <s:enumeration value="NoCommit" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfReturnC4InsuredData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnC4InsuredData" nillable="true" type="tns:ReturnC4InsuredData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnC4InsuredData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="offer_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_birth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_relation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_birth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_tel" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveQuotation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="quotationData" type="tns:QuotationData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QuotationData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SendEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="offer_birth" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_relation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="insured_birth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_tel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_edt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ins_sdtH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="project_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="amt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="prem" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="icomp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibranch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nsales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mailType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="autor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents2" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_prem_nt" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="quo_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="image_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="accept_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_rep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_rep" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveQuotationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveQuotationResult" type="tns:ReturnsOfReturnQuotation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnQuotation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnQuotation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnQuotation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnQuotation" nillable="true" type="tns:ReturnQuotation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnQuotation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RtnCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RtnContent" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDocumentsPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Quo_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentsPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentsPDFResult" type="tns:ReturnsOfReturnApplicationFormInsurance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnApplicationFormInsurance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnApplicationFormInsurance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnApplicationFormInsurance">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnApplicationFormInsurance" nillable="true" type="tns:ReturnApplicationFormInsurance" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnApplicationFormInsurance">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="QuotationExist" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="fileContentBinary" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TestDownload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PdfTemplateId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestDownloadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TestDownloadResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckDuplicate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pRiskData" type="tns:RiskData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RiskData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckDuplicateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckDuplicateResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfString">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAlarm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pAlarmData" type="tns:AlarmData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AlarmData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="grade" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="run_id" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetAlarmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetAlarmResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveECPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="policyData" type="tns:PolicyData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PolicyData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="risk_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tran_type" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="offer_date" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="autor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="offer_birth" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_relation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="insured_birth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_tel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ins_sdtH" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="amt" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="prem" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="icomp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibranch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nsales" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveECPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveECPolicyResult" type="tns:ReturnsOfReturnPolicyInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnPolicyInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnPolicyInfo" nillable="true" type="tns:ReturnPolicyInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RtnCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="receipt_no" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveECTempPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="wsOtnPlyData" type="tns:OtnPlyData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OtnPlyData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pol_sno" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="end_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="tran_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="old_pol_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quo_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_cont" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_fax" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="offer_date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_prop" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_career" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_kind" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_off" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="benefit_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="benefit_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="benefit_post" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="benefit_addr" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="works_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="works_desc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="works_amt" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="loan" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_addr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdtH" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_edt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_edtH" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="edr_sdt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="edr_sdtH" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="edr_edt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="edr_edtH" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="dpolicy" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dply_close" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="dadeta_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="amt_curr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="amt_rate" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="iresource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="icomp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibranch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="underwriter" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="project_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="icorp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="officer_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="agent_memo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibuss_mod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit1_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit2_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit3_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4_ext" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nsales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reference" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="reference_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="plus_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="plus_mnt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="coins_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="coins_rate" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="igroupinsure" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="memo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="prem" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_prem" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_comm" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_amt_nt" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_prem_nt" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_comm_nt" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="dentry" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ientry" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="prt_cnt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="prt_date" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="receipt_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="receipt_prt_cnt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="receipt_prt_dt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="receipt_prt_emp" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="old_dply_close" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="last_end_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="nullify" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="installment" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="offer_birth" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="insured_birth" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_rep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_rep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_relation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pc_flag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cont_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="accept_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="image_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="udentry" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="actUnit" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="hugeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="autor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="run_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="attached" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dpay" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="frcvpay" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dchk_cash" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_email" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="mailType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aml_offerCareer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aml_insuredCareer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aml_offerCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aml_insuredCountry" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="othAplyClsDatas" type="tns:ArrayOfOthAplyClsData" />
+          <s:element minOccurs="0" maxOccurs="1" name="otnPlyInsDatas" type="tns:ArrayOfOtnPlyInsData" />
+          <s:element minOccurs="0" maxOccurs="1" name="otnEdrInsDatas" type="tns:ArrayOfOtnEdrInsData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOthAplyClsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OthAplyClsData" nillable="true" type="tns:OthAplyClsData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OthAplyClsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="apolino" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aendosn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="aclause" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="acontent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="arefe" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOtnPlyInsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OtnPlyInsData" nillable="true" type="tns:OtnPlyInsData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OtnPlyInsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="pol_sno" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="end_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="obj_sno" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ins_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="cls_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="unduty_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="contract_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="supply_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="machine_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="dismantle_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="biaop_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="biaoa_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pdaoa_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="csl_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="mlblty_amt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="deduct_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="deduct_amt" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="deduct_desc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="daunit_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="daunit_num" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="a_ins_prema" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="a_ins_premh" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="a_ins_premd" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="a_ins_prem" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_prema" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_premh" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_premd" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_prem" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="pure_prem" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="prem_desc" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_comm_rate" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="fee_rate" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_comm" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_amt_nt" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_prema_nt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_premh_nt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_premd_nt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_prem_nt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_comm_nt" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="pure_prem_nt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents5" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents6" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents7" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="contents8" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="zipcode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="underwriting" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="loseFactor" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="AGGFactor" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="deduct_amt2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="deduct_amt3" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="deduct_coef" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="BaseRate" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="RiskCoef" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PremCoef" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OtherCoef1" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OtherCoef2" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OtherCoef3" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialCond" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OtnEdrInsData">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:OtnPlyInsData" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfOtnEdrInsData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OtnEdrInsData" nillable="true" type="tns:OtnEdrInsData" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveECTempPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveECTempPolicyResult" type="tns:ReturnsOfReturnPolicyInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestSaveECTempPolicy">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestSaveECTempPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestSaveECTempPolicyResult" type="tns:ReturnsOfReturnPolicyInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEPolicyInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RiskId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="InsuredId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEPolicyInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEPolicyInfoResult" type="tns:ReturnsOfReturnEPolicyInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnEPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnEPolicyInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnEPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnEPolicyInfo" nillable="true" type="tns:ReturnEPolicyInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnEPolicyInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Pol_No" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Ins_Sdt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Offer_Tel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Offer_Email" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUnpaidQuotationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Barcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustomerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnpaidQuotationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnpaidQuotationInfoResult" type="tns:ReturnsOfReturnUnpaidInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnUnpaidInfo">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnUnpaidInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnUnpaidInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnUnpaidInfo" nillable="true" type="tns:ReturnUnpaidInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnUnpaidInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="queryResult" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quo_no" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="risk_id" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="co_prem_nt" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insured_name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_edt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="isales_unit4" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveOtnPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pi" type="tns:PaymentInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PaymentInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CollectCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Premium" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PayDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="VouchDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Payment" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssuredTel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailRecipient" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailSubject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailBody" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SaveOtnPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveOtnPaymentResult" type="tns:ReturnsOfReturnPayment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfReturnPayment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfReturnPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfReturnPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ReturnPayment" nillable="true" type="tns:ReturnPayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnPayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReturnMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="offer_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="quo_no" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ins_sdt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailRecipient" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailSubject" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailBody" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetEPolicyPDF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pol_no" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEPolicyPDFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEPolicyPDFResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TestSaveOtnPayment">
+        <s:complexType />
+      </s:element>
+      <s:element name="TestSaveOtnPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TestSaveOtnPaymentResult" type="tns:ReturnsOfReturnPayment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryC4LastStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iinsurid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryC4LastStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryC4LastStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCompanyBranch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="companyBranch" type="tns:CompanyBranch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CompanyBranch">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Comp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Branch" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DpePolicy" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckCompanyBranchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckCompanyBranchResult" type="tns:ReturnsOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfBoolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBoolean">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="boolean" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckBlackList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckBlackListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckBlackListResult" type="tns:ReturnsOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SaveC4TempData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lstOtnC4CompleteTemp" type="tns:ArrayOfOtnC4CompleteTemp" />
+            <s:element minOccurs="0" maxOccurs="1" name="preNoYN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOtnC4CompleteTemp">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OtnC4CompleteTemp" nillable="true" type="tns:OtnC4CompleteTemp" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OtnC4CompleteTemp">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Validation" type="tns:ValidationEnum" />
+          <s:element minOccurs="1" maxOccurs="1" name="RowId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OfferDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferPost" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferAddr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OfferBirth" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferTel" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferRep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfferRelation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredPost" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredAddr" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InsuredBirth" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredTel" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InsSDT" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="InsEDT" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Amt" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Prem" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Comp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Branch" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Officer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Broker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesUnit1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesUnit2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesUnit3" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesUnit4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NSales" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OccupyDt" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="RPAId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creator" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDt" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ValidationEnum">
+        <s:restriction base="s:string">
+          <s:enumeration value="失敗_1格式" />
+          <s:enumeration value="成功_1格式" />
+          <s:enumeration value="失敗_2出單" />
+          <s:enumeration value="成功_2出單" />
+          <s:enumeration value="失敗_3轉入" />
+          <s:enumeration value="成功_3轉入" />
+          <s:enumeration value="_" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="SaveC4TempDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SaveC4TempDataResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRPACase">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRPACaseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRPACaseResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRPAStaus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rpaReturn" type="tns:RPAReturn" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RPAReturn">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="insured_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateRPAStausResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRPAStausResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCreditCardForFailureC4Result">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreditCardForFailureC4ResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreditCardForFailureC4ResultResult" type="tns:ReturnsOfCreditCardForC4" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfCreditCardForC4">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfCreditCardForC4" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCreditCardForC4">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CreditCardForC4" nillable="true" type="tns:CreditCardForC4" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreditCardForC4">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CardExpiry" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CardAmount" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EntryUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EntryDatetime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Modifiable" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Policy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Officer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRCResultCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PRCResult" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeTransactionNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeReceiptNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AuthorizeAmount" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthorizeUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AuthorizeDatetime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaptureTransactionNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaptureResponseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaptureMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CaptureUser" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CaptureDatetime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="NoticeStatus" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="NoticeDatetime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessStartTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="ProcessEndTime" nillable="true" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCreditCardForSuccessC4Result">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCreditCardForSuccessC4ResultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCreditCardForSuccessC4ResultResult" type="tns:ReturnsOfCreditCardForC4" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCreditCardForC4NoticeTimeForFailure">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lstCreditCardForC4S" type="tns:ArrayOfCreditCardForC4" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCreditCardForC4NoticeTimeForFailureResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateCreditCardForC4NoticeTimeForFailureResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCreditCardForC4NoticeTimeForSuccess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="lstCreditCardForC4S" type="tns:ArrayOfCreditCardForC4" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateCreditCardForC4NoticeTimeForSuccessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateCreditCardForC4NoticeTimeForSuccessResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRPAProcess">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dateValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRPAProcessResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRPAProcessResult" type="tns:ReturnsOfRPAStatusData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfRPAStatusData">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfRPAStatusData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRPAStatusData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RPAStatusData" nillable="true" type="tns:RPAStatusData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RPAStatusData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Iofficer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ibroker" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cnt" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Insured_Id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrefetchedNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Creator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateDt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OfficerEmail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Npresident" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NpresidentName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NpresidentEmail" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="QueryC4ClaimStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iinsurid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OfferId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryC4ClaimStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryC4ClaimStatusResult" type="tns:ReturnsOfC4ClaimStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnsOfC4ClaimStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:ExecuteResultEnum" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PublicKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Data" type="tns:ArrayOfC4ClaimStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfC4ClaimStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="C4ClaimStatus" nillable="true" type="tns:C4ClaimStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="C4ClaimStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ClaimNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AcceptDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PaidDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClaimEmp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InsuredName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckIbroker">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iBroker" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dPolicy" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIbrokerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIbrokerResult" type="tns:ReturnsOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIofficer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="iOfficer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckIofficerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckIofficerResult" type="tns:ReturnsOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoNumberForOtnQuo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="autoNumbering" type="tns:AutonumBering" />
+            <s:element minOccurs="0" maxOccurs="1" name="userid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AutonumBering">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Dmth" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dyear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KbillCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KbillGrp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KcompNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="KserialIndex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RiskType" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetAutoNumberForOtnQuoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAutoNumberForOtnQuoResult" type="tns:ReturnsOfString" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckC8AmountControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckC8AmountControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckC8AmountControlResult" type="tns:ReturnsOfBoolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="ReturnsOfReturnApplicationFormInsurance" nillable="true" type="tns:ReturnsOfReturnApplicationFormInsurance" />
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="ReturnsOfReturnPolicyInfo" nillable="true" type="tns:ReturnsOfReturnPolicyInfo" />
+      <s:element name="ReturnsOfReturnEPolicyInfo" nillable="true" type="tns:ReturnsOfReturnEPolicyInfo" />
+      <s:element name="ReturnsOfReturnUnpaidInfo" nillable="true" type="tns:ReturnsOfReturnUnpaidInfo" />
+      <s:element name="ReturnsOfReturnPayment" nillable="true" type="tns:ReturnsOfReturnPayment" />
+      <s:element name="ReturnsOfBoolean" nillable="true" type="tns:ReturnsOfBoolean" />
+      <s:element name="ReturnsOfString" nillable="true" type="tns:ReturnsOfString" />
+      <s:element name="ReturnsOfCreditCardForC4" nillable="true" type="tns:ReturnsOfCreditCardForC4" />
+      <s:element name="ReturnsOfRPAStatusData" nillable="true" type="tns:ReturnsOfRPAStatusData" />
+      <s:element name="ReturnsOfC4ClaimStatus" nillable="true" type="tns:ReturnsOfC4ClaimStatus" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ClaimProgressSoapIn">
+    <wsdl:part name="parameters" element="tns:ClaimProgress" />
+  </wsdl:message>
+  <wsdl:message name="ClaimProgressSoapOut">
+    <wsdl:part name="parameters" element="tns:ClaimProgressResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ByInsuredSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryC4ByInsured" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ByInsuredSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryC4ByInsuredResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuotationSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveQuotation" />
+  </wsdl:message>
+  <wsdl:message name="SaveQuotationSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveQuotationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentsPDF" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentsPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestDownloadSoapIn">
+    <wsdl:part name="parameters" element="tns:TestDownload" />
+  </wsdl:message>
+  <wsdl:message name="TestDownloadSoapOut">
+    <wsdl:part name="parameters" element="tns:TestDownloadResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckDuplicate" />
+  </wsdl:message>
+  <wsdl:message name="CheckDuplicateSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckDuplicateResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetAlarmSoapIn">
+    <wsdl:part name="parameters" element="tns:SetAlarm" />
+  </wsdl:message>
+  <wsdl:message name="SetAlarmSoapOut">
+    <wsdl:part name="parameters" element="tns:SetAlarmResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveECPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:SaveECPolicy" />
+  </wsdl:message>
+  <wsdl:message name="SaveECPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:SaveECPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveECTempPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:SaveECTempPolicy" />
+  </wsdl:message>
+  <wsdl:message name="SaveECTempPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:SaveECTempPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveECTempPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:TestSaveECTempPolicy" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveECTempPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:TestSaveECTempPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEPolicyInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEPolicyInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpaidQuotationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnpaidQuotationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpaidQuotationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnpaidQuotationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveOtnPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveOtnPayment" />
+  </wsdl:message>
+  <wsdl:message name="SaveOtnPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveOtnPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyPDFSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEPolicyPDF" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyPDFSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEPolicyPDFResponse" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveOtnPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:TestSaveOtnPayment" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveOtnPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:TestSaveOtnPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4LastStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryC4LastStatus" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4LastStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryC4LastStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckCompanyBranchSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckCompanyBranch" />
+  </wsdl:message>
+  <wsdl:message name="CheckCompanyBranchSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckCompanyBranchResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckBlackListSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckBlackList" />
+  </wsdl:message>
+  <wsdl:message name="CheckBlackListSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckBlackListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SaveC4TempDataSoapIn">
+    <wsdl:part name="parameters" element="tns:SaveC4TempData" />
+  </wsdl:message>
+  <wsdl:message name="SaveC4TempDataSoapOut">
+    <wsdl:part name="parameters" element="tns:SaveC4TempDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRPACaseSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRPACase" />
+  </wsdl:message>
+  <wsdl:message name="GetRPACaseSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRPACaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRPAStausSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRPAStaus" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRPAStausSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRPAStausResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForFailureC4ResultSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreditCardForFailureC4Result" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForFailureC4ResultSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreditCardForFailureC4ResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForSuccessC4ResultSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCreditCardForSuccessC4Result" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForSuccessC4ResultSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCreditCardForSuccessC4ResultResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreditCardForC4NoticeTimeForFailureSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardForC4NoticeTimeForFailure" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreditCardForC4NoticeTimeForFailureSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardForC4NoticeTimeForFailureResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreditCardForC4NoticeTimeForSuccessSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardForC4NoticeTimeForSuccess" />
+  </wsdl:message>
+  <wsdl:message name="UpdateCreditCardForC4NoticeTimeForSuccessSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateCreditCardForC4NoticeTimeForSuccessResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRPAProcessSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRPAProcess" />
+  </wsdl:message>
+  <wsdl:message name="GetRPAProcessSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRPAProcessResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ClaimStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryC4ClaimStatus" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ClaimStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryC4ClaimStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIbrokerSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIbroker" />
+  </wsdl:message>
+  <wsdl:message name="CheckIbrokerSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIbrokerResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckIofficerSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckIofficer" />
+  </wsdl:message>
+  <wsdl:message name="CheckIofficerSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckIofficerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoNumberForOtnQuoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAutoNumberForOtnQuo" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoNumberForOtnQuoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAutoNumberForOtnQuoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckC8AmountControlSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckC8AmountControl" />
+  </wsdl:message>
+  <wsdl:message name="CheckC8AmountControlSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckC8AmountControlResponse" />
+  </wsdl:message>
+  <wsdl:message name="ClaimProgressHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="AccidentNo" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ClaimProgressHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsPDFHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="Quo_no" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentsPDFHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfReturnApplicationFormInsurance" />
+  </wsdl:message>
+  <wsdl:message name="TestDownloadHttpPostIn">
+    <wsdl:part name="PdfTemplateId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TestDownloadHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveECTempPolicyHttpPostIn" />
+  <wsdl:message name="TestSaveECTempPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfReturnPolicyInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyInfoHttpPostIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="RiskId" type="s:string" />
+    <wsdl:part name="InsuredId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfReturnEPolicyInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpaidQuotationInfoHttpPostIn">
+    <wsdl:part name="Userid" type="s:string" />
+    <wsdl:part name="Barcode" type="s:string" />
+    <wsdl:part name="CustomerId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUnpaidQuotationInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfReturnUnpaidInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyPDFHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="pol_no" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetEPolicyPDFHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TestSaveOtnPaymentHttpPostIn" />
+  <wsdl:message name="TestSaveOtnPaymentHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfReturnPayment" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4LastStatusHttpPostIn">
+    <wsdl:part name="userid" type="s:string" />
+    <wsdl:part name="iinsurid" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4LastStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckBlackListHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+    <wsdl:part name="customerId" type="s:string" />
+    <wsdl:part name="customerName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckBlackListHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfBoolean" />
+  </wsdl:message>
+  <wsdl:message name="GetRPACaseHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRPACaseHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfString" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForFailureC4ResultHttpPostIn" />
+  <wsdl:message name="GetCreditCardForFailureC4ResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfCreditCardForC4" />
+  </wsdl:message>
+  <wsdl:message name="GetCreditCardForSuccessC4ResultHttpPostIn" />
+  <wsdl:message name="GetCreditCardForSuccessC4ResultHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfCreditCardForC4" />
+  </wsdl:message>
+  <wsdl:message name="GetRPAProcessHttpPostIn">
+    <wsdl:part name="dateValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRPAProcessHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfRPAStatusData" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ClaimStatusHttpPostIn">
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="iinsurid" type="s:string" />
+    <wsdl:part name="OfferId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="QueryC4ClaimStatusHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfC4ClaimStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckIbrokerHttpPostIn">
+    <wsdl:part name="userid" type="s:string" />
+    <wsdl:part name="iBroker" type="s:string" />
+    <wsdl:part name="dPolicy" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIbrokerHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfBoolean" />
+  </wsdl:message>
+  <wsdl:message name="CheckIofficerHttpPostIn">
+    <wsdl:part name="userid" type="s:string" />
+    <wsdl:part name="iOfficer" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckIofficerHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfBoolean" />
+  </wsdl:message>
+  <wsdl:message name="CheckC8AmountControlHttpPostIn">
+    <wsdl:part name="userId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckC8AmountControlHttpPostOut">
+    <wsdl:part name="Body" element="tns:ReturnsOfBoolean" />
+  </wsdl:message>
+  <wsdl:portType name="DefaultSoap">
+    <wsdl:operation name="ClaimProgress">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">理賠進度查詢</wsdl:documentation>
+      <wsdl:input message="tns:ClaimProgressSoapIn" />
+      <wsdl:output message="tns:ClaimProgressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ByInsured">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查詢防疫險客戶資料</wsdl:documentation>
+      <wsdl:input message="tns:QueryC4ByInsuredSoapIn" />
+      <wsdl:output message="tns:QueryC4ByInsuredSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuotation">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">數位門戶報價要保</wsdl:documentation>
+      <wsdl:input message="tns:SaveQuotationSoapIn" />
+      <wsdl:output message="tns:SaveQuotationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得各險種相關文件</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsPDFSoapIn" />
+      <wsdl:output message="tns:GetDocumentsPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestDownload">
+      <wsdl:input message="tns:TestDownloadSoapIn" />
+      <wsdl:output message="tns:TestDownloadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">重複投保檢核</wsdl:documentation>
+      <wsdl:input message="tns:CheckDuplicateSoapIn" />
+      <wsdl:output message="tns:CheckDuplicateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetAlarm">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">電商出單回寫中高風險或Isid警報</wsdl:documentation>
+      <wsdl:input message="tns:SetAlarmSoapIn" />
+      <wsdl:output message="tns:SetAlarmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveECPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">電商要保出單</wsdl:documentation>
+      <wsdl:input message="tns:SaveECPolicySoapIn" />
+      <wsdl:output message="tns:SaveECPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveECTempPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">電商要保資料轉入暫存保單</wsdl:documentation>
+      <wsdl:input message="tns:SaveECTempPolicySoapIn" />
+      <wsdl:output message="tns:SaveECTempPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveECTempPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">電商要保資料轉入暫存保單(測試)</wsdl:documentation>
+      <wsdl:input message="tns:TestSaveECTempPolicySoapIn" />
+      <wsdl:output message="tns:TestSaveECTempPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得有效之電子保單資訊</wsdl:documentation>
+      <wsdl:input message="tns:GetEPolicyInfoSoapIn" />
+      <wsdl:output message="tns:GetEPolicyInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpaidQuotationInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依繳款單號查詢未出單之報價資資訊</wsdl:documentation>
+      <wsdl:input message="tns:GetUnpaidQuotationInfoSoapIn" />
+      <wsdl:output message="tns:GetUnpaidQuotationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveOtnPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">其他險回押已收費</wsdl:documentation>
+      <wsdl:input message="tns:SaveOtnPaymentSoapIn" />
+      <wsdl:output message="tns:SaveOtnPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得電子保單PDF</wsdl:documentation>
+      <wsdl:input message="tns:GetEPolicyPDFSoapIn" />
+      <wsdl:output message="tns:GetEPolicyPDFSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveOtnPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">其他險回押已收費</wsdl:documentation>
+      <wsdl:input message="tns:TestSaveOtnPaymentSoapIn" />
+      <wsdl:output message="tns:TestSaveOtnPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4LastStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">以被保人ID查詢法傳最新狀態</wsdl:documentation>
+      <wsdl:input message="tns:QueryC4LastStatusSoapIn" />
+      <wsdl:output message="tns:QueryC4LastStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckCompanyBranch">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">出單單位有效性</wsdl:documentation>
+      <wsdl:input message="tns:CheckCompanyBranchSoapIn" />
+      <wsdl:output message="tns:CheckCompanyBranchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckBlackList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">自建黑名單檢查</wsdl:documentation>
+      <wsdl:input message="tns:CheckBlackListSoapIn" />
+      <wsdl:output message="tns:CheckBlackListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveC4TempData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">法傳寫入完整EXCEL</wsdl:documentation>
+      <wsdl:input message="tns:SaveC4TempDataSoapIn" />
+      <wsdl:output message="tns:SaveC4TempDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRPACase">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RPA取件</wsdl:documentation>
+      <wsdl:input message="tns:GetRPACaseSoapIn" />
+      <wsdl:output message="tns:GetRPACaseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRPAStaus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RPA回傳出單狀態</wsdl:documentation>
+      <wsdl:input message="tns:UpdateRPAStausSoapIn" />
+      <wsdl:output message="tns:UpdateRPAStausSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForFailureC4Result">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得所有失敗需通知且未寄發的資料</wsdl:documentation>
+      <wsdl:input message="tns:GetCreditCardForFailureC4ResultSoapIn" />
+      <wsdl:output message="tns:GetCreditCardForFailureC4ResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForSuccessC4Result">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得所有成功需通知且未寄發的資料</wsdl:documentation>
+      <wsdl:input message="tns:GetCreditCardForSuccessC4ResultSoapIn" />
+      <wsdl:output message="tns:GetCreditCardForSuccessC4ResultSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForFailure">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依被保險人回押已寄發通知時間-失敗通知已寄發完</wsdl:documentation>
+      <wsdl:input message="tns:UpdateCreditCardForC4NoticeTimeForFailureSoapIn" />
+      <wsdl:output message="tns:UpdateCreditCardForC4NoticeTimeForFailureSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForSuccess">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依被保險人回押已寄發通知時間-成功通知已寄發完</wsdl:documentation>
+      <wsdl:input message="tns:UpdateCreditCardForC4NoticeTimeForSuccessSoapIn" />
+      <wsdl:output message="tns:UpdateCreditCardForC4NoticeTimeForSuccessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRPAProcess">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RPA出單狀況通知清單</wsdl:documentation>
+      <wsdl:input message="tns:GetRPAProcessSoapIn" />
+      <wsdl:output message="tns:GetRPAProcessSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ClaimStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">防疫險理賠進度查詢</wsdl:documentation>
+      <wsdl:input message="tns:QueryC4ClaimStatusSoapIn" />
+      <wsdl:output message="tns:QueryC4ClaimStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIbroker">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">經紀人/代理人/業務員檢核</wsdl:documentation>
+      <wsdl:input message="tns:CheckIbrokerSoapIn" />
+      <wsdl:output message="tns:CheckIbrokerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIofficer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">服務人員檢核</wsdl:documentation>
+      <wsdl:input message="tns:CheckIofficerSoapIn" />
+      <wsdl:output message="tns:CheckIofficerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoNumberForOtnQuo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取其他險報價單號</wsdl:documentation>
+      <wsdl:input message="tns:GetAutoNumberForOtnQuoSoapIn" />
+      <wsdl:output message="tns:GetAutoNumberForOtnQuoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckC8AmountControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">檢核是否超過總量控管</wsdl:documentation>
+      <wsdl:input message="tns:CheckC8AmountControlSoapIn" />
+      <wsdl:output message="tns:CheckC8AmountControlSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="DefaultHttpPost">
+    <wsdl:operation name="ClaimProgress">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">理賠進度查詢</wsdl:documentation>
+      <wsdl:input message="tns:ClaimProgressHttpPostIn" />
+      <wsdl:output message="tns:ClaimProgressHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得各險種相關文件</wsdl:documentation>
+      <wsdl:input message="tns:GetDocumentsPDFHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentsPDFHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestDownload">
+      <wsdl:input message="tns:TestDownloadHttpPostIn" />
+      <wsdl:output message="tns:TestDownloadHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveECTempPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">電商要保資料轉入暫存保單(測試)</wsdl:documentation>
+      <wsdl:input message="tns:TestSaveECTempPolicyHttpPostIn" />
+      <wsdl:output message="tns:TestSaveECTempPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得有效之電子保單資訊</wsdl:documentation>
+      <wsdl:input message="tns:GetEPolicyInfoHttpPostIn" />
+      <wsdl:output message="tns:GetEPolicyInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpaidQuotationInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">依繳款單號查詢未出單之報價資資訊</wsdl:documentation>
+      <wsdl:input message="tns:GetUnpaidQuotationInfoHttpPostIn" />
+      <wsdl:output message="tns:GetUnpaidQuotationInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyPDF">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得電子保單PDF</wsdl:documentation>
+      <wsdl:input message="tns:GetEPolicyPDFHttpPostIn" />
+      <wsdl:output message="tns:GetEPolicyPDFHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveOtnPayment">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">其他險回押已收費</wsdl:documentation>
+      <wsdl:input message="tns:TestSaveOtnPaymentHttpPostIn" />
+      <wsdl:output message="tns:TestSaveOtnPaymentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4LastStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">以被保人ID查詢法傳最新狀態</wsdl:documentation>
+      <wsdl:input message="tns:QueryC4LastStatusHttpPostIn" />
+      <wsdl:output message="tns:QueryC4LastStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckBlackList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">自建黑名單檢查</wsdl:documentation>
+      <wsdl:input message="tns:CheckBlackListHttpPostIn" />
+      <wsdl:output message="tns:CheckBlackListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRPACase">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RPA取件</wsdl:documentation>
+      <wsdl:input message="tns:GetRPACaseHttpPostIn" />
+      <wsdl:output message="tns:GetRPACaseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForFailureC4Result">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得所有失敗需通知且未寄發的資料</wsdl:documentation>
+      <wsdl:input message="tns:GetCreditCardForFailureC4ResultHttpPostIn" />
+      <wsdl:output message="tns:GetCreditCardForFailureC4ResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForSuccessC4Result">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取得所有成功需通知且未寄發的資料</wsdl:documentation>
+      <wsdl:input message="tns:GetCreditCardForSuccessC4ResultHttpPostIn" />
+      <wsdl:output message="tns:GetCreditCardForSuccessC4ResultHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRPAProcess">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RPA出單狀況通知清單</wsdl:documentation>
+      <wsdl:input message="tns:GetRPAProcessHttpPostIn" />
+      <wsdl:output message="tns:GetRPAProcessHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ClaimStatus">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">防疫險理賠進度查詢</wsdl:documentation>
+      <wsdl:input message="tns:QueryC4ClaimStatusHttpPostIn" />
+      <wsdl:output message="tns:QueryC4ClaimStatusHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIbroker">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">經紀人/代理人/業務員檢核</wsdl:documentation>
+      <wsdl:input message="tns:CheckIbrokerHttpPostIn" />
+      <wsdl:output message="tns:CheckIbrokerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIofficer">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">服務人員檢核</wsdl:documentation>
+      <wsdl:input message="tns:CheckIofficerHttpPostIn" />
+      <wsdl:output message="tns:CheckIofficerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckC8AmountControl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">檢核是否超過總量控管</wsdl:documentation>
+      <wsdl:input message="tns:CheckC8AmountControlHttpPostIn" />
+      <wsdl:output message="tns:CheckC8AmountControlHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultSoap" type="tns:DefaultSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClaimProgress">
+      <soap:operation soapAction="http://tempuri.org/ClaimProgress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ByInsured">
+      <soap:operation soapAction="http://tempuri.org/QueryC4ByInsured" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuotation">
+      <soap:operation soapAction="http://tempuri.org/SaveQuotation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsPDF">
+      <soap:operation soapAction="http://tempuri.org/GetDocumentsPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDownload">
+      <soap:operation soapAction="http://tempuri.org/TestDownload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicate">
+      <soap:operation soapAction="http://tempuri.org/CheckDuplicate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlarm">
+      <soap:operation soapAction="http://tempuri.org/SetAlarm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveECPolicy">
+      <soap:operation soapAction="http://tempuri.org/SaveECPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveECTempPolicy">
+      <soap:operation soapAction="http://tempuri.org/SaveECTempPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveECTempPolicy">
+      <soap:operation soapAction="http://tempuri.org/TestSaveECTempPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyInfo">
+      <soap:operation soapAction="http://tempuri.org/GetEPolicyInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpaidQuotationInfo">
+      <soap:operation soapAction="http://tempuri.org/GetUnpaidQuotationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveOtnPayment">
+      <soap:operation soapAction="http://tempuri.org/SaveOtnPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyPDF">
+      <soap:operation soapAction="http://tempuri.org/GetEPolicyPDF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveOtnPayment">
+      <soap:operation soapAction="http://tempuri.org/TestSaveOtnPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4LastStatus">
+      <soap:operation soapAction="http://tempuri.org/QueryC4LastStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCompanyBranch">
+      <soap:operation soapAction="http://tempuri.org/CheckCompanyBranch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckBlackList">
+      <soap:operation soapAction="http://tempuri.org/CheckBlackList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveC4TempData">
+      <soap:operation soapAction="http://tempuri.org/SaveC4TempData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPACase">
+      <soap:operation soapAction="http://tempuri.org/GetRPACase" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRPAStaus">
+      <soap:operation soapAction="http://tempuri.org/UpdateRPAStaus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForFailureC4Result">
+      <soap:operation soapAction="http://tempuri.org/GetCreditCardForFailureC4Result" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForSuccessC4Result">
+      <soap:operation soapAction="http://tempuri.org/GetCreditCardForSuccessC4Result" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForFailure">
+      <soap:operation soapAction="http://tempuri.org/UpdateCreditCardForC4NoticeTimeForFailure" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForSuccess">
+      <soap:operation soapAction="http://tempuri.org/UpdateCreditCardForC4NoticeTimeForSuccess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPAProcess">
+      <soap:operation soapAction="http://tempuri.org/GetRPAProcess" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ClaimStatus">
+      <soap:operation soapAction="http://tempuri.org/QueryC4ClaimStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIbroker">
+      <soap:operation soapAction="http://tempuri.org/CheckIbroker" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIofficer">
+      <soap:operation soapAction="http://tempuri.org/CheckIofficer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoNumberForOtnQuo">
+      <soap:operation soapAction="http://tempuri.org/GetAutoNumberForOtnQuo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckC8AmountControl">
+      <soap:operation soapAction="http://tempuri.org/CheckC8AmountControl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultSoap12" type="tns:DefaultSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ClaimProgress">
+      <soap12:operation soapAction="http://tempuri.org/ClaimProgress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ByInsured">
+      <soap12:operation soapAction="http://tempuri.org/QueryC4ByInsured" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveQuotation">
+      <soap12:operation soapAction="http://tempuri.org/SaveQuotation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsPDF">
+      <soap12:operation soapAction="http://tempuri.org/GetDocumentsPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDownload">
+      <soap12:operation soapAction="http://tempuri.org/TestDownload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckDuplicate">
+      <soap12:operation soapAction="http://tempuri.org/CheckDuplicate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetAlarm">
+      <soap12:operation soapAction="http://tempuri.org/SetAlarm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveECPolicy">
+      <soap12:operation soapAction="http://tempuri.org/SaveECPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveECTempPolicy">
+      <soap12:operation soapAction="http://tempuri.org/SaveECTempPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveECTempPolicy">
+      <soap12:operation soapAction="http://tempuri.org/TestSaveECTempPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetEPolicyInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpaidQuotationInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetUnpaidQuotationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveOtnPayment">
+      <soap12:operation soapAction="http://tempuri.org/SaveOtnPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyPDF">
+      <soap12:operation soapAction="http://tempuri.org/GetEPolicyPDF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveOtnPayment">
+      <soap12:operation soapAction="http://tempuri.org/TestSaveOtnPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4LastStatus">
+      <soap12:operation soapAction="http://tempuri.org/QueryC4LastStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckCompanyBranch">
+      <soap12:operation soapAction="http://tempuri.org/CheckCompanyBranch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckBlackList">
+      <soap12:operation soapAction="http://tempuri.org/CheckBlackList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveC4TempData">
+      <soap12:operation soapAction="http://tempuri.org/SaveC4TempData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPACase">
+      <soap12:operation soapAction="http://tempuri.org/GetRPACase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRPAStaus">
+      <soap12:operation soapAction="http://tempuri.org/UpdateRPAStaus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForFailureC4Result">
+      <soap12:operation soapAction="http://tempuri.org/GetCreditCardForFailureC4Result" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForSuccessC4Result">
+      <soap12:operation soapAction="http://tempuri.org/GetCreditCardForSuccessC4Result" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForFailure">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCreditCardForC4NoticeTimeForFailure" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateCreditCardForC4NoticeTimeForSuccess">
+      <soap12:operation soapAction="http://tempuri.org/UpdateCreditCardForC4NoticeTimeForSuccess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPAProcess">
+      <soap12:operation soapAction="http://tempuri.org/GetRPAProcess" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ClaimStatus">
+      <soap12:operation soapAction="http://tempuri.org/QueryC4ClaimStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIbroker">
+      <soap12:operation soapAction="http://tempuri.org/CheckIbroker" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIofficer">
+      <soap12:operation soapAction="http://tempuri.org/CheckIofficer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoNumberForOtnQuo">
+      <soap12:operation soapAction="http://tempuri.org/GetAutoNumberForOtnQuo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckC8AmountControl">
+      <soap12:operation soapAction="http://tempuri.org/CheckC8AmountControl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DefaultHttpPost" type="tns:DefaultHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="ClaimProgress">
+      <http:operation location="/ClaimProgress" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentsPDF">
+      <http:operation location="/GetDocumentsPDF" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestDownload">
+      <http:operation location="/TestDownload" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveECTempPolicy">
+      <http:operation location="/TestSaveECTempPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyInfo">
+      <http:operation location="/GetEPolicyInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnpaidQuotationInfo">
+      <http:operation location="/GetUnpaidQuotationInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEPolicyPDF">
+      <http:operation location="/GetEPolicyPDF" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestSaveOtnPayment">
+      <http:operation location="/TestSaveOtnPayment" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4LastStatus">
+      <http:operation location="/QueryC4LastStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckBlackList">
+      <http:operation location="/CheckBlackList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPACase">
+      <http:operation location="/GetRPACase" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForFailureC4Result">
+      <http:operation location="/GetCreditCardForFailureC4Result" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditCardForSuccessC4Result">
+      <http:operation location="/GetCreditCardForSuccessC4Result" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRPAProcess">
+      <http:operation location="/GetRPAProcess" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryC4ClaimStatus">
+      <http:operation location="/QueryC4ClaimStatus" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIbroker">
+      <http:operation location="/CheckIbroker" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIofficer">
+      <http:operation location="/CheckIofficer" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckC8AmountControl">
+      <http:operation location="/CheckC8AmountControl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Default">
+    <wsdl:port name="DefaultSoap" binding="tns:DefaultSoap">
+      <soap:address location="https://wap3-test.tfmi.com.tw/OTN/default.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DefaultSoap12" binding="tns:DefaultSoap12">
+      <soap12:address location="https://wap3-test.tfmi.com.tw/OTN/default.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DefaultHttpPost" binding="tns:DefaultHttpPost">
+      <http:address location="https://wap3-test.tfmi.com.tw/OTN/default.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

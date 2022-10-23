@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Plugins css start-->
+<link rel="stylesheet" type="text/css" href="../assets/css/datatables.css">
+<!-- Plugins css Ends-->
+
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid support-ticket">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>匯出資料</h5><span>請輸入要匯出的起始日期(事故發生日)</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">開始日期:</label>
+                                <input class="form-control digits" type="date" id="txtStartDate" name="txtStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">結束日期:</label>
+                                <input class="form-control digits" type="date" id="txtEndDate" name="txtEndDate">
+                            </div>
+
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="col-sm-9 offset-sm-3">
+                                <a href="javascript:void(0)" class="btn btn-danger" onclick="Export()">下載</a>
+                                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">回首頁</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div><BR>
+
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+<!-- Plugins JS start-->
+<script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/support-ticket-custom.js"></script>
+<!-- Plugins JS Ends-->
+
+<script>
+    function Export() {
+
+            var data = {
+                StartDate: $('#txtStartDate').val(),
+                EndDate: $('#txtEndDate').val(),
+
+            };
+
+            $.ajax({
+            type: "POST",
+            url: '@Url.Action("Export", "ExportReport")',
+            data: data,
+            dataType: "json",
+            success: function (data) {
+            if (data.Result == "Success")
+            {
+                window.location.href = data.FilePath;       
+            }
+            else
+            {
+
+                alert(data.Message);
+            }
+            }
+            });
+            };
+</script>

@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>理賠統計報表</h3>
+
+                </div>
+                <div class="col-sm-6">
+                    <!-- Bookmark Start-->
+                    <!-- Bookmark Ends-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid support-ticket">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h6>請輸入要查詢的起始日期(事故發生日)</h6>
+                    </div>
+                    <div class=" card-body">
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">開始日期:</label>
+                                <input class="form-control digits" type="date" id="txtStartDate" name="txtStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">結束日期:</label>
+                                <input class="form-control digits" type="date" id="txtEndDate" name="txtEndDate">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="javascript:void(0)" class="btn btn-danger" onclick="Query()">開始查詢</a>
+                    </div>
+
+                </div>
+            </div>
+
+            @{
+                Html.RenderPartial("List");
+            }
+
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+
+
+<script>
+
+    $("#divList").hide();
+    
+
+    function Query() {
+
+            var data = {
+                StartDate: $('#txtStartDate').val(),
+                EndDate: $('#txtEndDate').val(),
+
+            };
+
+            $.ajax({
+            type: "POST",
+            url: '@Url.Action("List", "ClaimReport")',
+            data: data,
+                dataType: "text",
+                success: function (data) {
+
+                    $("#divList").show();
+                    $("#divList").html(data);
+            },
+                error: function (jqXHR) {
+
+                    Data = JSON.parse(jqXHR.responseText);
+
+                    alert(Data.Message);
+            }
+
+
+            });
+            };
+</script>

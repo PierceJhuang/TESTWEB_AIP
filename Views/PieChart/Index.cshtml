@@ -1,0 +1,243 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Plugins css start-->
+<link rel="stylesheet" type="text/css" href="../assets/css/date-picker.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/owlcarousel.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/prism.css">
+<link rel="stylesheet" type="text/css" href="../assets/css/whether-icon.css">
+<!-- Plugins css Ends-->
+
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>事故態樣分析</h3>
+                    @*<ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item">Charts</li>
+                            <li class="breadcrumb-item active">Flot Chart</li>
+                        </ol>*@
+                </div>
+                <div class="col-sm-6">
+                    <!-- Bookmark Start-->
+                    @*<div class="bookmark">
+                            <ul>
+                                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Tables"><i data-feather="inbox"></i></a></li>
+                                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Chat"><i data-feather="message-square"></i></a></li>
+                                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Icons"><i data-feather="command"></i></a></li>
+                                <li><a href="javascript:void(0)" data-container="body" data-bs-toggle="popover" data-placement="top" title="" data-original-title="Learning"><i data-feather="layers"></i></a></li>
+                                <li>
+                                    <a href="javascript:void(0)"><i class="bookmark-search" data-feather="star"></i></a>
+                                    <form class="form-inline search-form">
+                                        <div class="form-group form-control-search">
+                                            <input type="text" placeholder="Search..">
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>*@
+                    <!-- Bookmark Ends-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid">
+        <div class="row all-chart">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h6>請輸入要查詢的起始日期(事故發生日)</h6>
+                    </div>
+                    <div class=" card-body">
+                        <div class="tab">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">開始日期:</label>
+                                <input class="form-control digits" type="date" id="txtStartDate" name="txtStartDate">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">結束日期:</label>
+                                <input class="form-control digits" type="date" id="txtEndDate" name="txtEndDate">
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-end">
+                        <a href="javascript:void(0)" class="btn btn-danger" onclick="Query()">開始查詢</a>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div id="divTerminalChart" class="col-sm-12 col-xl-6 box-col-6" style="display:none">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>事故航廈</h5>
+                    </div>
+                    <div class="card-body chart-block">
+                        <div class="flot-chart-container">
+                            <div class="flot-chart-placeholder" id="TerminalChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="divPlaceChart" class="col-sm-12 col-xl-6 box-col-6" style="display:none">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>事故地點</h5>
+                    </div>
+                    <div class="card-body chart-block">
+                        <div class="flot-chart-container">
+                            <div class="flot-chart-placeholder" id="PlaceChart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+<!-- Plugins JS start-->
+<script src="../assets/js/chart/flot-chart/excanvas.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.time.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.categories.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.stack.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.pie.js"></script>
+<script src="../assets/js/chart/flot-chart/jquery.flot.symbol.js"></script>
+<script src="../assets/js/tooltip-init.js"></script>
+<!-- Plugins JS Ends-->
+
+<script>
+
+
+      function Query() {
+
+            var data = {
+                StartDate: $('#txtStartDate').val(),
+                EndDate: $('#txtEndDate').val(),
+
+            };
+
+            $.ajax({
+            type: "POST",
+            url: '@Url.Action("Query", "PieChart")',
+            data: data,
+            dataType: "json",
+            success: function (data) {
+            if (data.Result == "Success")
+            {
+                $('#divTerminalChart').show();
+                $('#divPlaceChart').show();
+
+
+                var TerminalList = data.TerminalList
+                var PlaceList = data.PlaceList;
+
+                var TerminalData = [];
+
+              if (TerminalList != null && TerminalList.length > 0)
+              {
+
+                  for (var i = 0; i < TerminalList.length; i++) {
+                      var showTitle = TerminalList[i].Text + ' : ' + TerminalList[i].Value + ' 件'
+                      TerminalData[i] = {
+                          label: showTitle,
+                        data: TerminalList[i].Value
+                  }
+              }
+            }
+
+    var PlaceData = [];
+
+    if (PlaceList != null && PlaceList.length > 0) {
+
+        for (var i = 0; i < PlaceList.length; i++) {
+            var showTitle2 = PlaceList[i].Text + ' : ' + PlaceList[i].Value +' 件'
+            PlaceData[i] = {
+                label: showTitle2,
+                data: PlaceList[i].Value
+            }
+        }
+    }
+
+    $.plot('#TerminalChart', TerminalData, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    label: {
+                        show: true,
+                        radius: 1,
+                        background: {
+                            opacity: 0.8
+                        }
+                    }
+                }
+            },
+            legend: {
+                show: false
+            },
+            grid: {
+                hoverable: false,
+                clickable: false
+            },
+            colors: ["#198754", "#ba895", "#222222", "#717171", "#e2c636", "#d22d3d", "#efefef"]
+        });
+
+
+    $.plot('#PlaceChart', PlaceData, {
+            series: {
+                pie: {
+                    show: true,
+                    radius: 1,
+                    label: {
+                        show: true,
+                        radius: 1,
+                        background: {
+                            opacity: 0.8
+                        }
+                    }
+                }
+            },
+        legend: {
+            show: false,
+
+        },
+        grid: {
+            hoverable: false,
+            clickable: false
+        },
+        colors: ["#198754", "#ba895", "#222222", "#717171", "#e2c636", "#d22d3d", "#efefef", "#ffc107","#6610f2"]
+        });
+
+
+
+            }
+            else
+            {
+                $('#divTerminalChart').hide();
+                $('#divPlaceChart').hide();
+                alert(data.Message);
+            }
+            }
+            });
+            };
+
+
+
+
+
+</script>

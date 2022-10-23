@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AIPWeb.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AIPWeb_CLMService_Default" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://wap3-test.tfmi.com.tw/OTN/default.asmx</Value>
+    </Setting>
+    <Setting Name="AIPWeb_SignatureService_Signature" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://wap3-test.tfmi.com.tw/cmm/Signature.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

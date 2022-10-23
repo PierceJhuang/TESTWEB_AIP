@@ -1,0 +1,95 @@
+﻿	53317
+53145
+
+--53147
+
+53321 12/2~12/3
+
+Philip_SRWaterfall_RPA
+
+SC Estimation System_RPA
+
+PlatformSCM
+
+TVBG freight expense tracking 
+
+Report
+
+TV运价更新共享平台
+
+
+aquiles.centeno@tpv-tech.com
+48 RAM
+
+jorge.ramirez@tpv-tech.com
+
+TPV-IT-SIT Members
+
+
+1. 新增畫面，添加、選擇Excel導入 按鈕無效果==>CSS遮蔽按鈕??
+2. 生產需求周別欄位Title可以2行，顯示完整名稱
+3. 匯入Excel 彈窗保留 + 顯示所有錯誤訊息
+4. 下載按鈕要有自己欄位
+5. 直屬主管簽核，缺欄位資料(工廠、類別)
+ 
+
+2. 下載格式，Bom表頁籤資料
+
+SC1020202112030004
+SC1020202112030005
+SC1020202112030006
+
+Zhenhong.li
+Steven.wu
+JunWen.lin
+Shaine.Yang
+zs.qu
+Shaine.Yang
+Zhenhong.li
+
+https://mfgportalmgt.tpv-tech.com
+
+https://xmap.tpv-tech.com
+
+https://xmap.tpv-tech.com/waterfall/login.html
+ 
+TV I&D
+RHINO.CHEN 陳韻如
+
+SCM
+John Hsieh 謝劭彥 
+
+
+
+Annie Chang 張淑華
+
+SharePoint for 流程改革小組 2016工作計劃
+
+
+ fanny.chen@tpv-tech.com
+
+
+https://tpvap.tpv-tech.com/rdmachinetrack/Login.aspx
+
+將Damon修改的PCS 系統功能，更新到PRD環境MFG Portal 会员信息同步JOB代码路径如下：
+D:\Demo\AD\DotNet\Src\Dev\IT\Portal\Job\SharePointJobWeb
+MFG Portal 统计信息统计API代码路径如下：
+D:\Demo\AD\DotNet\Src\Dev\IT\Portal\Portal\Api\MFGPortalWebApiMFG  
+Portal统计信息API文档和SA文档的链接事下：
+http://cnhqvs1014/sites/IT/EA/SSA/Documents/_02_Application/MFG/%5BSA%20Review%5D%20PCS%20%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF%20SA.docx
+http://cnhqvs1014/sites/IT/EA/SSA/Documents/_02_Application/MFG/MFG%20Portal%20%20%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E7%BB%9F%E8%AE%A1API.docx
+
+
+https://cnsp.tpv-tech.com:99/ERP/Shared%20Documents/FICO%20Knowledge%20Sharing/BW/02_BW%20Overall%20Review/Video
+
+https://cnsp.tpv-tech.com/sites/IT/EA/ERP/Shared%20Documents/FICO%20Knowledge%20Sharing/BW/02_BW%20Overall%20Review/Video
+
+
+  http://172.20.1.14/corp/Documents
+
+
+1. 2筆刪單無法在MC經辦送件成功
+2. 撤單Mail少送MC 經辦人員
+3. 標準格式下載檔中的Bom資料沒有做Group by 數量欄位
+
+

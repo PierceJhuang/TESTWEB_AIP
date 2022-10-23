@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-body">
+
+    <!-- Container-fluid starts-->
+    <div class="container-fluid support-ticket">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+
+                    </div>
+                    <div class="card-body">
+                        <div class="list-group">
+                            <a class="list-group-item list-group-item-action flex-column align-items-start" href="javascript:void(0)" data-bs-original-title="" title="">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">案號:@ViewData["No"]</h5><small class="text-muted"> </small>
+                                </div>
+                                <p class="mb-1">@ViewData["Message"]</p><small class="text-muted">操作帳號為:@ViewData["Account"]</small>
+                            </a>
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="col-sm-9 offset-sm-3">
+                                <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                                    回首頁
+                                </a>
+                                <a href="@Url.Action("Index", "Claim")" class="btn btn-light" >
+                                  新增其他案件
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div><BR>
+
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>

@@ -1,0 +1,158 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-body dashboard-2-main">
+    <div class="container-fluid general-widget">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>線上報案系統</h5>
+                    </div>
+                    <form  class="form theme-form" id="form" name="form" method="post" action="@Url.Action("Add", "Claim")" enctype="multipart/form-data" >
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+
+
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故日期</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date" id="dt-date" data-target-input="nearest">
+                                                <input id="AccidentDate" name="AccidentDate" class="form-control datetimepicker-input digits" type="text" data-target="#dt-date">
+                                                <div class="input-group-text" data-target="#dt-date" data-toggle="datetimepicker"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故時間</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date" id="dt-time" data-target-input="nearest">
+                                                <input  id="AccidentTime" name="AccidentTime" class="form-control datetimepicker-input digits" type="text" data-target="#dt-time">
+                                                <div class="input-group-text" data-target="#dt-time" data-toggle="datetimepicker"><i class="fa fa-clock-o"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故航廈</label>
+                                        <div class="col-sm-9">
+                                            <select id="AccidentTerminal" name="AccidentTerminal" class="form-select digits">
+                                                <option value="第1航廈">第1航廈</option>
+                                                <option value="第2航廈">第2航廈</option>
+                                                <option value="第3航廈">第3航廈</option>
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故地點</label>
+                                        <div class="col-sm-9">
+                                            <select id="AccidentPlace" name="AccidentPlace" class="form-select digits" >
+                                                <option value="1.大廳">1.大廳</option>
+                                                <option  value="2.樓梯">2.樓梯</option>
+                                                <option  value="3.電扶梯">3.電扶梯</option>
+                                                <option  value="4.電梯">4.電梯</option>
+                                                <option  value="5.廁所">5.廁所</option>
+                                                <option  value="6.停車場">6.停車場</option>
+                                                <option  value="7.餐廳">7.餐廳</option>
+                                                <option  value="8.走道">8.走道</option>
+                                                <option  value="9.其他地方(需備註)">9.其他地方(需備註)</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故經過</label>
+                                        <div class="col-sm-9">
+                                            <textarea id="AccidentProcess" name="AccidentProcess" class="form-control" rows="5" cols="5" placeholder="事故經過"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">備註</label>
+                                        <div class="col-sm-9">
+                                            <textarea id="Remark" name="Remark" class="form-control" rows="5" cols="5" placeholder="備註"></textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">上傳檔案</label>
+                                        <div class="col-sm-9">
+                                            <input name="UploadFile" id="UploadFile" class="form-control" type="file">
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button class="btn btn-primary" type="submit"  >確認送出</button>
+                                <input class="btn btn-light" type="reset" value="取消">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Container-fluid starts-->
+    <!-- Container-fluid Ends-->
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#form').submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData($('#form')[0]);
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Add", "Claim")',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData :false,
+                success: function (data) {
+                    if (data.Result == "Success") {
+                        window.location = '@Url.Action("Result", "Claim")?Mode=A&No=' + data.No;
+                    }
+                    else {
+
+                        alert(data.Message);
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>

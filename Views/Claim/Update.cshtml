@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using AIPWeb.Models;
+
+@{
+    ClaimModel claimModel = (ClaimModel)ViewData["claimModel"];
+}
+
+<div class="page-body dashboard-2-main">
+    <div class="container-fluid general-widget">
+        <div class="row">
+
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header pb-0">
+                        <h5>線上報案系統</h5>
+                    </div>
+                    <form class="form theme-form" id="form" name="form" method="post" action="@Url.Action("Add", "Claim")" enctype="multipart/form-data">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">報案序號</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date" data-target-input="nearest">
+                                                <input id="No" name="No" class="form-control" type="text" readonly="readonly" value="@claimModel.No">
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故日期</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date" id="dt-date" data-target-input="nearest">
+                                                <input id="AccidentDate" name="AccidentDate" value="@claimModel.AccidentDate" class="form-control datetimepicker-input digits" type="text" data-target="#dt-date">
+                                                <div class="input-group-text" data-target="#dt-date" data-toggle="datetimepicker"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故時間</label>
+                                        <div class="col-sm-9">
+                                            <div class="input-group date" id="dt-time" data-target-input="nearest">
+                                                <input id="AccidentTime" name="AccidentTime" value="@claimModel.AccidentTime" class="form-control datetimepicker-input digits" type="text" data-target="#dt-time">
+                                                <div class="input-group-text" data-target="#dt-time" data-toggle="datetimepicker"><i class="fa fa-clock-o"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故航廈</label>
+                                        <div class="col-sm-9">
+                                            <select id="AccidentTerminal" name="AccidentTerminal" class="form-select digits" >
+                                                <option value="第1航廈" @(claimModel.AccidentTerminal == "第1航廈" ? "selected" : "" )>第1航廈</option>
+                                                <option value="第2航廈" @(claimModel.AccidentTerminal == "第2航廈" ? "selected" : "" )>第2航廈</option>
+                                                <option value="第3航廈" @(claimModel.AccidentTerminal == "第3航廈" ? "selected" : "" )>第3航廈</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故地點</label>
+                                        <div class="col-sm-9">
+                                            <select id="AccidentPlace" name="AccidentPlace" class="form-select digits">
+                                                <option value="1.大廳" @(claimModel.AccidentPlace == "1.大廳" ? "selected" : "" )>1.大廳</option>
+
+                                       <option value="2.樓梯"  @(claimModel.AccidentPlace == "2.樓梯" ? "selected" : "" )>2.樓梯</option>
+
+                                       <option value="3.電扶梯"  @(claimModel.AccidentPlace == "3.電扶梯" ? "selected" : "" )>3.電扶梯</option>
+
+                                       <option value="4.電梯"  @(claimModel.AccidentPlace == "4.電梯" ? "selected" : "" )>4.電梯</option>
+
+                                       <option value="5.廁所"  @(claimModel.AccidentPlace == "5.廁所" ? "selected" : "" )>5.廁所</option>
+
+                                       <option value="6.停車場"  @(claimModel.AccidentPlace == "6.停車場" ? "selected" : "" )>6.停車場</option>
+
+                                       <option value="7.餐廳"  @(claimModel.AccidentPlace == "7.餐廳" ? "selected" : "" )>7.餐廳</option>
+
+                                       <option value="8.走道"  @(claimModel.AccidentPlace == "8.走道" ? "selected" : "" )>8.走道</option>
+
+                                       <option value="9.其他地方(需備註)"  @(claimModel.AccidentPlace == "9.其他地方(需備註)" ? "selected" : "" )>9.其他地方(需備註)</option>
+
+
+                                   </select>
+
+                               </div>
+
+                           </div>
+
+
+                           <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">事故經過</label>
+                                        <div class="col-sm-9">
+                                            <textarea id="AccidentProcess" name="AccidentProcess" class="form-control" rows="5" cols="5" placeholder="事故經過">@claimModel.AccidentProcess</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">備註</label>
+                                        <div class="col-sm-9">
+                                            <textarea id="Remark" name="Remark" class="form-control" value="" rows="5" cols="5" placeholder="備註">@claimModel.Remark</textarea>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <label class="col-sm-3 col-form-label">上傳檔案</label>
+                                        <div class="col-sm-9">
+                                            <input name="UploadFile" id="UploadFile" class="form-control" type="file">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="card-footer text-end">
+                            <div class="col-sm-9 offset-sm-3">
+
+                                @if(claimModel.IsUpdateRight=="Y")
+                                {
+                                   <button class="btn btn-primary" type="submit">確認送出</button>
+                                }
+                                <input class="btn btn-light" type="button" onclick="history.back();" value="回上一頁">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+
+    <!-- Container-fluid starts-->
+    <!-- Container-fluid Ends-->
+</div>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('#form').submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData($('#form')[0]);
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("UpdateData", "Claim")',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData :false,
+                success: function (data) {
+                  if (data.Result == "Success") {
+                      window.location = '@Url.Action("Result", "Claim")?Mode=U&No=' + data.No;
+                   }
+                  else {
+
+                      alert(data.Message);
+                   }
+                }
+             });
+        });
+    });
+
+
+</script>

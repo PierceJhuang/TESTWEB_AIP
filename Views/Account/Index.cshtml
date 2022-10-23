@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using AIPWeb.Models;
+
+@{
+    List<AccountModel> AccountList = (List<AccountModel>)ViewData["AccountList"];
+}
+
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>帳戶管理</h3>
+
+                </div>
+                <div class="col-sm-6">
+                    <!-- Bookmark Start-->
+                    <!-- Bookmark Ends-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid support-ticket">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>修改密碼</h5><span>密碼需有大小寫英文及數字共八碼.</span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-xl">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th width="170px">身份</th>
+                                    <th>帳號</th>
+                                    <th>名稱</th>
+                                    <th>密碼</th>
+                                    <th width="200px">動作</th>
+                                </tr>
+                            </thead>
+                            <tbody name="tb_account" id="tb_account">
+                                @if (AccountList != null && AccountList.Count > 0)
+                                {
+                                     int iRow = 1;
+                                     foreach (var acc in AccountList)
+                                     {
+                                       
+                                <tr>
+                                    <th scope="row">@iRow</th>
+                                    <td>@acc.RoleName</td>
+                                    <td>@acc.Account</td>
+                                    <td><input class="form-control" name="Name_@acc.Id" id="Name_@acc.Id" type="text" value='@acc.Name'  placeholder="" required=""></td>
+                                    <td><input class="form-control" name="Password_@acc.Id"  id="Password_@acc.Id" type="text" value='@acc.Password'  placeholder="" required=""></td>
+                                    <td>
+                                        <a href="javascript:void(0)" class="btn btn-primary" onclick="UpdateUser('@acc.Id','U')">更新</a>
+                                    </td>
+
+                                </tr>
+                                       
+
+                                      iRow++;
+                                    }
+                                }
+                                </tbody>
+                        </table>
+                        <div class="card-footer text-end">
+                            <div class="col-sm-9 offset-sm-3">
+                                <a class="btn btn-success " href="javascript:void(0)" data-bs-original-title="" title="" onclick="AddUser()"><span class="fa fa-edit"></span> 新增使用者</a>
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+<script>
+
+    var addUserCount = 1;
+
+     var AccountList = @Html.Raw(Json.Encode(ViewData["AccountList"]));
+
+    function UpdateUser(accid, type) {
+
+        var IsCheck = true;
+        var ErrMsg = "";
+
+        var account = '';
+        var password = '';
+        var name = '';
+
+        if (type == 'A') {
+            account = $("#AddAccount_" + accid).val();
+            password = $("#AddPassword_" + accid).val();
+            name = $("#AddName_" + accid).val();
+        }
+        else {
+            password = $("#Password_" + accid).val();
+            name = $("#Name_" + accid).val();
+        }
+
+        if (type == 'A' && account.trim() == '' ) {
+
+            ErrMsg = "請輸入帳號"
+            IsCheck = false;
+        }
+
+        if (name.trim() == '') {
+
+            ErrMsg = "請輸入名稱"
+            IsCheck = false;
+        }
+
+        if (password.trim() == '' || !validatePW(password)) {
+
+            ErrMsg = "密碼需有大小寫英文及數字共八碼"
+            IsCheck = false;
+        }
+
+        if (!IsCheck) {
+            alert(ErrMsg);
+            return;
+
+        }
+
+        var data = {
+
+                Id : accid ,
+                Account: account,
+                Password: password,
+                Type: type,
+                Name : name
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Update", "Account")',
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                if (data.Result == "Success")
+                {
+                    alert('更新成功');
+                    window.location = '@Url.Action("Index", "Account")';
+                }
+                else
+                {
+
+                    alert(data.Message);
+                }
+            }
+        });
+
+    }
+
+    function validatePW(pw) {
+        var re = /^(?=.*[a-z]+)(?=.*[A-Z]+)(?=.*\d+)[a-zA-Z0-9]{8,30}$/;
+        return re.test(pw);
+    }
+
+
+    function AddUser(accid, type) {
+
+
+        var tr = $('<tr></tr>');
+
+
+        var iRow = AccountList.length + addUserCount;
+        var td_row = $('<th scope="row">' + iRow +'</th>');
+
+        var td_roleName = $('<td>一般使用者</td>');
+        var td_Account = $(' <td><input class="form-control" name="AddAccount_' + iRow +  '" id="AddAccount_' + iRow + '" type="text" value="" ></input></td>');
+        var td_Name = $(' <td><input class="form-control" name="AddName_' + iRow + '" id="AddName_' + iRow + '" type="text" value="" ></input></td>');
+        var td_Password = $(' <td><input class="form-control" name="AddPassword_' + iRow + '" id="AddPassword_' + iRow + '" type="text" value="" ></input></td>');
+        var td_Action = $('<td> <a href="javascript:void(0)" class="btn btn-primary" onclick="UpdateUser(\'' + iRow + '\',\'A\')">更新</a></td>')
+
+        tr.append(td_row);           
+        tr.append(td_roleName);   
+        tr.append(td_Account);   
+        tr.append(td_Name);   
+        tr.append(td_Password);   
+        tr.append(td_Action);   
+
+        $('#tb_account').append(tr);
+
+        addUserCount++;
+    }
+
+
+</script>

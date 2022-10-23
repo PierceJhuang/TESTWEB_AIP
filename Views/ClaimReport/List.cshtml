@@ -1,0 +1,87 @@
+﻿@using AIPWeb.Models;
+@model List<ClaimReportModel>
+
+<!-- Plugins css start-->
+<link rel="stylesheet" type="text/css" href="../assets/css/datatables.css">
+<!-- Plugins css Ends-->
+
+<div id="divList">
+    <div class="col-sm-12">
+        <div class="card">
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="display" id="basic-6">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">項次</th>
+
+                            </tr>
+                            <tr>
+                                <th>通報序號</th>
+                                <th>理賠案號</th>
+                                <th>事故日期</th>
+                                <th>事故經過</th>
+                                <th>處理進度</th>
+                                <th>理賠金額</th>
+                                <th>給付日期</th>
+                                <th>給付對象</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Count > 0)
+                            {
+                                foreach (var report in Model)
+                                {
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="media-body align-self-center">
+                                            <div>@report.Num</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td><a href="@Url.Action("Update", "Claim")?No=@report.No"> @report.No</a> </td>
+                                <td>@report.ClaimNo</td>
+                                <td>@report.AccidentDate</td>
+                                <td>@report.AccidentProcess</td>
+                                <td>
+                                    <div class="progress-showcase">
+                                        <div class="progress sm-progress-bar">
+                                            <div class="progress-bar @report.ClassName" role="progressbar" style="width: @report.Percent%" aria-valuenow="@report.Percent" aria-valuemin="0" aria-valuemax="100">@report.Progress</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@report.ClaimAmt</td>
+                                <td>@report.PayDay</td>
+                                <td>@report.ClaimObject</td>
+                            </tr>
+                                }
+                            }
+
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>項次</th>
+                                <th>通報序號</th>
+                                <th>理賠案號</th>
+                                <th>事故經過</th>
+                                <th>處理進度</th>
+                                <th>理賠金額</th>
+                                <th>給付日期</th>
+                                <th>給付對象</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Plugins JS start-->
+<script src="../assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+<script src="../assets/js/support-ticket-custom.js"></script>
+<!-- Plugins JS Ends-->

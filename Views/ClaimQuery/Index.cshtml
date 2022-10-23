@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "桃園國際機場意外理賠平台";
+}
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Plugins css start-->
+<link rel="stylesheet" type="text/css" href="../assets/css/photoswipe.css">
+<!-- Plugins css Ends-->
+
+
+<div class="page-body">
+    <div class="container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>理賠進度查詢</h3>
+
+                </div>
+                <div class="col-sm-6">
+                    <!-- Bookmark Start-->
+                    <!-- Bookmark Ends-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid starts-->
+    <div class="container-fluid support-ticket">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        <div class="card-header pb-0">
+                            <form class="search-form">
+
+                                <div class="form-group mb-0">
+                                    <div class="input-group">
+                                        <input id="txtSearch" name="txtSearch" onkeypress="SearchData(event)" class="form-control-plaintext" type="text" placeholder="請輸入報案序號 ..">
+                                    </div>
+                                </div>
+                            </form><BR><BR><BR><BR>
+                        </div>
+                        <div id="divProgress" name="divProgress" class="row mb-5" style="display:none">
+                           
+                        </div>
+                        <table id="tb_Claim" name="tb_Claim" class="table table-striped bg-primary" style="display:none">
+                            <thead class="tbl-strip-thad-bdr">
+                                <tr>
+                                    <th scope="col">報案序號</th>
+                                    <th scope="col">賠案號碼</th>
+                                    <th scope="col">事故日期</th>
+                                    <th scope="col">事故航廈</th>
+                                    <th scope="col">事故地點</th>
+                                    <th scope="col">事故經過</th>
+                                    <th scope="col">賠付對象</th>
+                                    <th scope="col">賠付金額</th>
+                                    <th scope="col">匯款日</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody_Claim" name="tbody_Claim">
+                              
+                            </tbody>
+                        </table>
+
+
+                    </div>
+                    <div class="table-responsive"></div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Container-fluid Ends-->
+</div>
+
+<!-- Plugins JS start-->
+<script src="../assets/js/photoswipe/photoswipe.min.js"></script>
+<script src="../assets/js/photoswipe/photoswipe-ui-default.min.js"></script>
+<script src="../assets/js/photoswipe/photoswipe.js"></script>
+<!-- Plugins JS Ends-->
+
+<script>
+
+    function SearchData(event) {
+
+        //Enter
+        if (event.keyCode == "13") {
+
+            event.preventDefault();
+            var value = $('#txtSearch').val();
+
+            if (value.trim()== "")
+            {
+                alert('搜尋文字不可以為空');
+                return;
+            }
+
+              var data = {
+                  No: value
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("Search", "ClaimQuery")',
+                data: data,
+                dataType: "json",
+                success: function (data) {
+                if (data.Result == "Success")
+                {
+                    $('#divProgress').show();
+                    $('#tb_Claim').show();
+                    BindData(data.Model);
+                }
+                else
+                {
+                    $('#divProgress').hide();
+                    $('#tb_Claim').hide();
+                    alert(data.Message);
+                }
+            }
+        });
+
+
+        };
+    };
+
+
+    function BindData(model) {
+
+        $('#divProgress').empty();
+        $('#tbody_Claim').empty();
+
+        var Progress = model.Progress;
+
+        var done_1 ='disabled ';
+        var done_2 ='disabled ';
+        var done_3 ='disabled ';
+        var done_4 = 'disabled ';
+
+        if (Progress == 1) {
+            done_1 ='current'
+        }
+        else if (Progress == 2) {
+            done_1 = 'done';
+            done_2 = 'current';
+        }
+        else if (Progress == 3) {
+            done_1 = 'done';
+            done_2 = 'done';
+            done_3 = 'current';
+        }
+        else if (Progress == 4) {
+            done_1 = 'done';
+            done_2 = 'done';
+            done_3 = 'done';
+            done_4 = 'current';
+        }
+
+        //受理中
+        var div_1 = $('<div class="u-pearl ' + done_1 +' col-3"> <div class="u-pearl-icon">1</div><span class="u-pearl-title">受理中</span></div>');
+
+        //處理中
+        var div_2 = $('<div class="u-pearl ' + done_2 + ' col-3"><div class="u-pearl-icon">2</div><span class="u-pearl-title">處理中</span></div>');
+
+        //部分給付
+        var div_3 = $('<div class="u-pearl ' + done_3 + ' col-3"><div class="u-pearl-icon">3</div><span class="u-pearl-title">部分賠付</span></div>');
+
+        //給付完成
+        var div_4 = $('<div class="u-pearl ' + done_4 + ' col-3"><div class="u-pearl-icon">4</div><span class="u-pearl-title">給付完成</span></div>');
+
+        $('#divProgress').append(div_1);
+        $('#divProgress').append(div_2);
+        $('#divProgress').append(div_3);
+        $('#divProgress').append(div_4);
+
+        //清單
+        for (var i = 0; i < model.DetailList.length; i++) {
+            var tr = $('<tr></tr>');
+
+            var td_No = $('<td>' + model.No + '</td>');
+            var td_ClaimNo = $('<td>' + model.ClaimNo + '</td>');
+            var td_AccidentDate = $('<td>' + model.AccidentDate + '</td>');
+            var td_AccidentTerminal = $('<td>' + model.AccidentTerminal + '</td>');
+            var td_AccidentPlace = $('<td>' + model.AccidentPlace + '</td>');
+            var td_AccidentProcess = $('<td>' + model.AccidentProcess + '</td>');
+          
+
+            var td_ClaimObject = $('<td>' + model.DetailList[i].ClaimObject + '</td>');
+            var td_ClaimAmt = $('<td>' + model.DetailList[i].ClaimAmt + '</td>');
+            var td_PayDay = $('<td>' + model.DetailList[i].PayDay + '</td>');
+
+            tr.append(td_No);
+            tr.append(td_ClaimNo);
+            tr.append(td_AccidentDate);
+            tr.append(td_AccidentTerminal);
+            tr.append(td_AccidentPlace);
+            tr.append(td_AccidentProcess);
+           
+            tr.append(td_ClaimObject);
+            tr.append(td_ClaimAmt);
+            tr.append(td_PayDay);
+
+            $('#tbody_Claim').append(tr);
+        }
+    }
+
+</script>

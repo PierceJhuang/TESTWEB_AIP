@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AccountVerification">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="account" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AccountVerificationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccountVerificationResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatePasswordUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="redirectUrl" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUpdatePasswordUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUpdatePasswordUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="unitCode1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitCode2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="signRoles" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetMailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetMailResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AccountVerificationSoapIn">
+    <wsdl:part name="parameters" element="tns:AccountVerification" />
+  </wsdl:message>
+  <wsdl:message name="AccountVerificationSoapOut">
+    <wsdl:part name="parameters" element="tns:AccountVerificationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatePasswordUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUpdatePasswordUrl" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatePasswordUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUpdatePasswordUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetMailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetMail" />
+  </wsdl:message>
+  <wsdl:message name="GetMailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetMailResponse" />
+  </wsdl:message>
+  <wsdl:message name="AccountVerificationHttpPostIn">
+    <wsdl:part name="account" type="s:string" />
+    <wsdl:part name="password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AccountVerificationHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatePasswordUrlHttpPostIn">
+    <wsdl:part name="id" type="s:string" />
+    <wsdl:part name="redirectUrl" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetUpdatePasswordUrlHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailHttpPostIn">
+    <wsdl:part name="unitCode1" type="s:string" />
+    <wsdl:part name="unitCode2" type="s:string" />
+    <wsdl:part name="signRoles" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetMailHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="SignatureSoap">
+    <wsdl:operation name="AccountVerification">
+      <wsdl:input message="tns:AccountVerificationSoapIn" />
+      <wsdl:output message="tns:AccountVerificationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatePasswordUrl">
+      <wsdl:input message="tns:GetUpdatePasswordUrlSoapIn" />
+      <wsdl:output message="tns:GetUpdatePasswordUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMail">
+      <wsdl:input message="tns:GetMailSoapIn" />
+      <wsdl:output message="tns:GetMailSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SignatureHttpPost">
+    <wsdl:operation name="AccountVerification">
+      <wsdl:input message="tns:AccountVerificationHttpPostIn" />
+      <wsdl:output message="tns:AccountVerificationHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatePasswordUrl">
+      <wsdl:input message="tns:GetUpdatePasswordUrlHttpPostIn" />
+      <wsdl:output message="tns:GetUpdatePasswordUrlHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMail">
+      <wsdl:input message="tns:GetMailHttpPostIn" />
+      <wsdl:output message="tns:GetMailHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SignatureSoap" type="tns:SignatureSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccountVerification">
+      <soap:operation soapAction="http://tempuri.org/AccountVerification" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatePasswordUrl">
+      <soap:operation soapAction="http://tempuri.org/GetUpdatePasswordUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMail">
+      <soap:operation soapAction="http://tempuri.org/GetMail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SignatureSoap12" type="tns:SignatureSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AccountVerification">
+      <soap12:operation soapAction="http://tempuri.org/AccountVerification" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatePasswordUrl">
+      <soap12:operation soapAction="http://tempuri.org/GetUpdatePasswordUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMail">
+      <soap12:operation soapAction="http://tempuri.org/GetMail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SignatureHttpPost" type="tns:SignatureHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AccountVerification">
+      <http:operation location="/AccountVerification" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUpdatePasswordUrl">
+      <http:operation location="/GetUpdatePasswordUrl" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMail">
+      <http:operation location="/GetMail" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Signature">
+    <wsdl:port name="SignatureSoap" binding="tns:SignatureSoap">
+      <soap:address location="https://wap3-test.tfmi.com.tw/cmm/Signature.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SignatureSoap12" binding="tns:SignatureSoap12">
+      <soap12:address location="https://wap3-test.tfmi.com.tw/cmm/Signature.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SignatureHttpPost" binding="tns:SignatureHttpPost">
+      <http:address location="https://wap3-test.tfmi.com.tw/cmm/Signature.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
